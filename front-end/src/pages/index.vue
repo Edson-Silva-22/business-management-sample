@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-card color="foregroud">
+    <v-card color="foreground">
       <div class="d-flex justify-space-between flex-wrap pa-2">
         <v-card-title primary-title class="pa-0">
           Minhas Vendas
