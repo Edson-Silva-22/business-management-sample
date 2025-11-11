@@ -11,6 +11,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    'Alert.component': typeof import('./components/alert/alert.component.vue')['default']
     ApexChartTooltip: typeof import('./components/ApexChartTooltip.vue')['default']
     AppFooter: typeof import('./components/AppFooter.vue')['default']
     Header: typeof import('./components/Header.vue')['default']

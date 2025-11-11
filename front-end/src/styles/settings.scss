@@ -5,6 +5,6 @@
  */
 
 // https://vuetifyjs.com/features/sass-variables/`
-// @use 'vuetify/settings' with (
-//   $color-pack: false
-// );
+@use 'vuetify/settings' with (
+  $skeleton-loader-bone-background: linear-gradient(90deg, rgba(var(--v-theme-background), 0), rgba(var(--v-theme-background), .3), rgba(var(--v-theme-background), 0))
+);
