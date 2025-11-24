@@ -76,10 +76,27 @@
   )
 
   async function onDropCard(event: any, targetStatus: string) {
-    console.log(event)
+    // Movimentação entre as colunas de status
     if (event && event.added && event.added.element) {
-      const moved = event.added.element
-      await productsStore.updateProduct(moved._id, { status: targetStatus })
+      const elementMoved = event.added.element
+      await productsStore.updateProduct(elementMoved._id, { status: targetStatus })
+    }
+
+    // Reordenação dentro da mesma coluna
+    if (event && event.moved && event.moved.element) {
+      const elementMoved = event.moved.element
+      const prevElement = products.value![event.moved.newIndex - 1]
+      const nextElement = products.value![event.moved.newIndex + 1]
+
+      await productsStore.updateProduct(elementMoved._id, { order: 
+        prevElement && nextElement
+          ? (prevElement.order + nextElement.order) / 2
+          : prevElement
+            ? prevElement.order + 1
+            : nextElement
+              ? nextElement.order - 1
+              : 0
+      })
     }
   }
 

@@ -17,6 +17,11 @@ export class Product {
 
   @Prop({ enum: ProductStatus, default: ProductStatus.NOTSTARTED })
   status: ProductStatus
+
+  @Prop({
+    default: Date.now
+  })
+  order: number
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product);
