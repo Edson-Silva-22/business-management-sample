@@ -5,7 +5,7 @@ export interface Product {
   _id: string
   name: string
   status: string
-  description: string
+  description: object | {}
   order: number
   createdAt: string
   updatedAt: string

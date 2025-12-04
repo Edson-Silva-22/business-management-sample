@@ -12,8 +12,8 @@ export class Product {
   @Prop()
   name: string
 
-  @Prop()
-  description: string
+  @Prop({ type: Object, default: {} })
+  description: Record<string, any>
 
   @Prop({ enum: ProductStatus, default: ProductStatus.NOTSTARTED })
   status: ProductStatus

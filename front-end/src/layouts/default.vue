@@ -1,4 +1,5 @@
 <template>
+  <Alert/>
   <Header></Header>
   <v-main>
     <router-view />
@@ -6,5 +7,6 @@
 </template>
 
 <script lang="ts" setup>
+  import Alert from '@/components/alert/alert.component.vue';
   //
 </script>

@@ -29,13 +29,14 @@
                   v-bind="props"
                   :color="isHovering ? 'primary' : 'foreground'"
                   class="cursor-pointer"
+                  @click="openDialogEditProduct = true; selectProduct = element"
                 >
                   <v-card-title primary-title class="text-white">
                     {{ element.name }}
                   </v-card-title>
       
                   <v-card-text class="text-white">
-                    {{ element.description }}
+                    <ProductView :product="element" />
                   </v-card-text>
                 </v-card>
               </v-hover>
@@ -52,6 +53,12 @@
 
       </v-card>
     </v-sheet>
+
+    <ProductEditor
+      v-model="openDialogEditProduct"
+      :product="selectProduct"
+      @save="updateTask"
+    />
   </v-container>
 </template>
 
@@ -74,6 +81,8 @@
       items: products.value!.filter(p => p.status === stage.status)
     }))
   )
+  const openDialogEditProduct = ref(false)
+  const selectProduct = ref<Product | null>(null)
 
   async function onDropCard(event: any, targetStatus: string) {
     // Movimentação entre as colunas de status
@@ -98,6 +107,14 @@
               : 0
       })
     }
+  }
+
+  async function updateTask(updated: Product) {
+    // Aqui você chama sua API para salvar no backend
+    await productsStore.updateProduct(updated._id, {
+      name: updated.name,
+      description: updated.description
+    })
   }
 
   onMounted(async () => {
